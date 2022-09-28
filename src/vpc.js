@@ -104,6 +104,13 @@ function buildAppSecurityGroup(prefixLists = null) {
       FromPort: 443,
       ToPort: 443,
     });
+    egress.push({
+      CidrIp: { 'Fn::GetAtt': ['VPC', 'CidrBlock'] },
+      Description: 'permit Redis Connection',
+      IpProtocol: 'tcp',
+      FromPort: 6379,
+      ToPort: 6379,
+    })
   }
 
   return {

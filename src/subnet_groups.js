@@ -133,9 +133,6 @@ function buildDAXSubnetGroup(numZones = 0) {
  * @return {Object}
  */
 function buildSubnetGroups(numZones = 0, subnetGroups = []) {
-  if (numZones < 2) {
-    return {};
-  }
   if (!Array.isArray(subnetGroups) || subnetGroups.length < 1) {
     return {};
   }

@@ -234,7 +234,7 @@ class ServerlessVpcPlugin {
     }
 
     if (createDbSubnet) {
-      if (numZones < 2) {
+      if (numZones < 1) {
         this.serverless.cli.log('WARNING: less than 2 AZs; skipping subnet group provisioning');
       } else {
         const invalidGroup = subnetGroups.some((group) => !VALID_SUBNET_GROUPS.includes(group));
@@ -256,7 +256,7 @@ class ServerlessVpcPlugin {
     if (createParameters) {
       Object.assign(resources, buildParameter('VPC'), buildParameter('AppSecurityGroup'));
 
-      if (createDbSubnet && numZones > 1) {
+      if (createDbSubnet && numZones >= 1) {
         if (subnetGroups.includes('rds')) {
           Object.assign(resources, buildParameter('RDSSubnetGroup'));
         }
